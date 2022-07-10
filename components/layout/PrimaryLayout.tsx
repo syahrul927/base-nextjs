@@ -1,12 +1,16 @@
 import Head from "next/head"
+import SidebarLayout from "../sidebar/SidebarLayout"
+import { mockSidebarTemplate } from "../sidebar/SidebarLayout.mocks"
 
 export interface IPrimaryLayout extends React.ComponentPropsWithoutRef<"div"> {
 	title?: string
-	justify?: "items-center" | "items-start"
+	items?: "items-center" | "items-start" | "items-end"
+	justify?: "justify-center" | "justify-start" | "justify-end"
 }
 const PrimaryLayout: React.FC<IPrimaryLayout> = ({
 	children,
-	justify = "items-center",
+	items = "items-center",
+	justify = "justify-center",
 	title,
 	...divProps
 }) => {
@@ -15,8 +19,11 @@ const PrimaryLayout: React.FC<IPrimaryLayout> = ({
 			<Head>
 				<title>{title ? title : "Base Project"}</title>
 			</Head>
-			<div {...divProps} className={`min-h-screen flex flex-col ${justify}`}>
-				<main className="px-5">{children}</main>
+			<div {...divProps} className={`flex flex-row bg-gray-100 min-h-screen`}>
+				<SidebarLayout {...mockSidebarTemplate.base} />
+				<main className={`flex-1 p-10 flex ${justify} ${items}`}>
+					{children}
+				</main>
 			</div>
 		</>
 	)
