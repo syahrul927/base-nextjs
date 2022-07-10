@@ -29,7 +29,7 @@ export interface SidebarMenuProps {
 const SidebarLayout: React.FC<SidebarProps> = (props: SidebarProps) => {
 	const [isOpen, setIsOpen] = React.useState<boolean>(true)
 	const renderLogo = (logo: string) => (
-		<Image src={logo} width={"40"} height={"40"} />
+		<Image src={logo} width={"40"} height={"40"} alt={"iconApp"} />
 	)
 	const { content } = props
 	const renderGroupMenu = () => {
